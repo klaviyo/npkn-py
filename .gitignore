@@ -1,0 +1,3 @@
+./dist/*
+./npkn/__pycache__
+.idea

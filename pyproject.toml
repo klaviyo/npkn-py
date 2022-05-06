@@ -12,6 +12,7 @@ python = "^3.7"
 click = "^8.1.2"
 toml = "^0.10.2"
 requests = "^2.27.1"
+PyYAML = "^6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.1"

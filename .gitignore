@@ -1,3 +1,5 @@
 ./dist/*
-./npkn/__pycache__
+examples/
+*/__pycache__/
+*/*/__pycache__/
 .idea

@@ -45,7 +45,7 @@ def run(name=None):
 @click.argument('name', required=False)
 @click.option("-r", "--runtime", type=click.Choice(RUNTIMES, case_sensitive=False), default=config['default_runtime'])
 @click.option("-w", "--workspace", default=None,
-              help="Workspace the function belongs to (default workspace used if not provided")
+              help="[EXPERIMENTAL] Workspace the function belongs to (default workspace used if not provided")
 def new(name=None, runtime=None, workspace=None):
     commands.new(name, runtime, workspace)
 

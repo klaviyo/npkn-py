@@ -37,7 +37,7 @@ Options
     
     -w, --workspace [:workspacename] 
     
-        The name of the workspace in which to create the new function. Defaults to
+        [EXPERIMENTAL] The name of the workspace in which to create the new function. Defaults to
         the default account workspace if not provided.
 
 ```

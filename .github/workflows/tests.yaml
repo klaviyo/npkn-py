@@ -27,7 +27,9 @@ jobs:
             image: windows-2022
           - os: macOS
             image: macos-12
-
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -57,7 +59,7 @@ jobs:
       - name: Ensure cache is healthy
         if: steps.cache.outputs.cache-hit == 'true'
         run: timeout 10s poetry run pip --version || rm -rf .venv
-        
+
       - name: Install dependencies
         run: |
           poetry install

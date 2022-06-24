@@ -3,7 +3,7 @@ from pytest import MonkeyPatch
 import requests_mock
 
 with MonkeyPatch.context() as mp:
-    mp.delenv("NPKN_API_HOST")
+    mp.delenv("NPKN_API_HOST", raising=False)
     from npkn.api import APIClient
 
 

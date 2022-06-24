@@ -55,10 +55,10 @@ def test_run_with_loading_message_with_kwargs(capsys):
 
 def test_load_config_no_envs(caplog):
     with MonkeyPatch.context() as mp:
-        mp.delenv("NPKN_ACCOUNT_ID")
-        mp.delenv("NPKN_SECRET_KEY")
-        mp.delenv("NPKN_DEFAULT_RUNTIME")
-        mp.delenv("NPKN_API_HOST")
+        mp.delenv("NPKN_ACCOUNT_ID", raising=False)
+        mp.delenv("NPKN_SECRET_KEY", raising=False)
+        mp.delenv("NPKN_DEFAULT_RUNTIME", raising=False)
+        mp.delenv("NPKN_API_HOST", raising=False)
 
         with caplog.at_level(logging.DEBUG):
             config = utils.load_config()
@@ -91,10 +91,10 @@ def test_load_config_all_envs(caplog):
 
 def test_load_config_invalid_default_runtime(caplog):
     with MonkeyPatch.context() as mp:
-        mp.delenv("NPKN_ACCOUNT_ID")
-        mp.delenv("NPKN_SECRET_KEY")
+        mp.delenv("NPKN_ACCOUNT_ID", raising=False)
+        mp.delenv("NPKN_SECRET_KEY", raising=False)
         mp.setenv("NPKN_DEFAULT_RUNTIME", "BASIC")
-        mp.delenv("NPKN_API_HOST")
+        mp.delenv("NPKN_API_HOST", raising=False)
 
         with caplog.at_level(logging.DEBUG):
             config = utils.load_config()

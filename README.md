@@ -119,6 +119,11 @@ poetry shell
 > npkn help
 ```
 
+### Run Local Tests
+```commandline
+poetry run pytest
+```
+
 ### Optional Environment Variables
 These environment variables are optional and mostly intended for development purposes:
 ```commandline

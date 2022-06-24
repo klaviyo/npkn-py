@@ -1,5 +1,6 @@
 import requests
 import os
+from urllib.parse import urljoin
 import traceback
 from npkn.utils import logger, config
 
@@ -11,7 +12,7 @@ class APIException(Exception):
 class APIClient:
     Protocol = "https"
     ApiVersion = "1"
-    BaseUrl = f"{config['api_host']}/api/{ApiVersion}"
+    BaseUrl = f"{config['api_host']}/api/{ApiVersion}/"
 
     def __init__(self, user_uid, api_key):
         self._user_uid = user_uid
@@ -24,7 +25,7 @@ class APIClient:
             'GET': requests.get,
             'DELETE': requests.delete
         }
-        url = os.path.join(self.BaseUrl, endpoint)
+        url = urljoin(self.BaseUrl, endpoint)
         res = methods[method](url, **{
             'headers': {
                 'napkin-user-uid': self._user_uid,

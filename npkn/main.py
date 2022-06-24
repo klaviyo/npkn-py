@@ -1,4 +1,5 @@
 import click
+import sys
 from npkn.constants import RUNTIMES
 from npkn.utils import config
 from npkn import commands
@@ -56,4 +57,5 @@ def deploy(name=None):
     commands.deploy(name)
 
 
-cli()
+if __name__ == "__main__":
+    cli()

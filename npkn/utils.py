@@ -7,9 +7,7 @@ from npkn.constants import RUNTIMES
 
 
 logger = logging.getLogger(__name__)
-# for some silly reason the following line is needed - https://stackoverflow.com/a/56144390
-logging.basicConfig()
-logger.setLevel(os.getenv("NPKN_LOG_LEVEL", "WARN"))
+logging.basicConfig(level=os.getenv("NPKN_LOG_LEVEL", "WARN"))
 
 
 def log_error_and_exit(err: Union[BaseException, str]) -> None:

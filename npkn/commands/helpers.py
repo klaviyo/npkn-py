@@ -65,14 +65,16 @@ def make_local_function_folder(runtime: str, name: str, workspace: str, director
 
     os.mkdir(folder_path)
 
-    if runtime == "node14.x":
+    if runtime == "nodejs14.x":
         if code is None:
             code = constants.DEFAULT_JS_CODE
         file_ext = "js"
-    else:
+    elif runtime == "python3.8":
         if code is None:
             code = constants.DEFAULT_PY_CODE
         file_ext = "py"
+    else:
+        raise ValueError(f"Unknown runtime: {runtime}")
 
     code_path = os.path.join(folder_path, f"function.{file_ext}")
     meta_path = os.path.join(folder_path, constants.CONFIG_FILE_NAME)

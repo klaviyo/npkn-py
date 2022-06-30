@@ -17,7 +17,12 @@ def do_new_api_call(runtime, workspace_id, name, folder_path):
 
 
 def new(name, runtime, workspace):
-
+    if not runtime:
+        raise ValueError(
+            """
+            No runtime is set. Either NPKN_DEFAULT_RUNTIME env var must be set 
+            or '-r [runtime]' must be passed in CLI. Runtime options are: python3.8 | nodejs14.x
+            """)
     if workspace is None:
         workspace_id = config['account_id']
     else:
@@ -31,7 +36,8 @@ def new(name, runtime, workspace):
     except BaseException as e:
         log_error_and_exit(e)
 
-    data = run_with_loading_message(do_new_api_call, f"Creating new function '{name}'", args=[runtime, workspace_id, name, folder_path])
+    data = run_with_loading_message(do_new_api_call, f"Creating new function '{name}'",
+                                    args=[runtime, workspace_id, name, folder_path])
 
     # add function uid to metadata.yaml
     logger.debug("Adding UID to metadata file")

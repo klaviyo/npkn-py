@@ -1,6 +1,6 @@
 from uuid import uuid4
 import shutil
-
+import sys
 from npkn.api import client, config, APIException
 from .helpers import make_local_function_folder, add_function_uid_to_metadata
 from npkn.utils import log_error_and_exit, logger, run_with_loading_message
@@ -12,6 +12,11 @@ def do_new_api_call(runtime, workspace_id, name, folder_path):
     except BaseException as e:
         shutil.rmtree(folder_path)
         raise APIException(e)
+
+    if err:
+        shutil.rmtree(folder_path)
+        print(f"Error encountered: {err}")
+        sys.exit(1)
 
     return data
 

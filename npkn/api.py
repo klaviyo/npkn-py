@@ -48,6 +48,8 @@ class APIClient:
 
             if not res.ok:
                 try:
+                    logger.debug("Error response:")
+                    logger.debug(res.json())
                     return None, res.json()
                 except BaseException:
                     return None, res.content
@@ -57,6 +59,8 @@ class APIClient:
             logger.debug(traceback.format_exc())
             return None, e
 
+        logger.debug("Success response:")
+        logger.debug(data)
         return data, None
 
     def post(self, endpoint, **kwargs) -> tuple:

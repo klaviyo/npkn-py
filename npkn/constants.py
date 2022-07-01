@@ -1,10 +1,8 @@
 # for now, this just has to keep in sync with backend file
-DEFAULT_PY_CODE = """
-from napkin import response
+DEFAULT_PY_CODE = """from napkin import response
 
 response.status_code = 200
 response.body = "hello, world!"
-
 """
 
 DEFAULT_JS_CODE = """

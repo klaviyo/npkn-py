@@ -4,6 +4,7 @@ import sys
 import yaml
 from typing import Union
 from npkn.constants import RUNTIMES
+from colorama import Fore
 
 
 logger = logging.getLogger(__name__)
@@ -11,8 +12,7 @@ logging.basicConfig(level=os.getenv("NPKN_LOG_LEVEL", "WARN"))
 
 
 def log_error_and_exit(err: Union[BaseException, str]) -> None:
-    logger.error(err)
-    sys.exit(1)
+    sys.exit(Fore.RED + str(err))
 
 
 def load_config():

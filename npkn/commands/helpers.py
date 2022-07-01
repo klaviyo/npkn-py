@@ -2,6 +2,7 @@ import os
 from npkn.api import client, APIException
 from npkn.utils import log_error_and_exit, load_yaml, write_yaml
 from npkn import constants
+from colorama import Back
 
 
 def find_local_function(name) -> tuple:
@@ -60,7 +61,10 @@ def make_local_function_folder(runtime: str, name: str, workspace: str, director
     folder_path = os.path.join(working_dir, name)
 
     if os.path.exists(folder_path):
-        msg = f"A folder named {folder_path} already exists in the current directory. Please choose a different name."
+        msg = f"A folder named '{name}'" + \
+              " already exists in the current directory " \
+              + Back.BLACK + "(Napkin function names are CASE-INSENSITIVE)" \
+              + Back.RESET + ".\n\nPlease choose a different name."
         log_error_and_exit(msg)
 
     os.mkdir(folder_path)

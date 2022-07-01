@@ -21,7 +21,13 @@ def modules_need_sync(local_modules, remote_modules) -> bool:
     if len(local_modules) != len(remote_modules):
         return True
 
-    rm_dict = {x['distribution']: x['version'] for x in remote_modules}
+    # currently, modules list has 2 possible representations depending on runtime (python vs js)
+    # python    : List[dict]
+    # js        : dict
+    if isinstance(remote_modules, list):
+        rm_dict = {x['distribution']: x['version'] for x in remote_modules}
+    else:
+        rm_dict = remote_modules
 
     for k, v in local_modules.items():
         if v != rm_dict.get(k):
@@ -52,6 +58,9 @@ def sync_code(function_uid, code_str):
 
     if err:
         raise APIException(err)
+
+    if not res.get('success'):
+        raise APIException(res.get('error'))
 
 
 def env_vars_need_sync(local_env, remote_env) -> bool:

@@ -12,8 +12,7 @@ def cli():
 
 
 @cli.command(help="""
-Pull function(s) from napkin.io to your local machine. 
-By default this will copy all of your workspaces and functions.
+Pull a function from napkin.io to your local machine.
 """)
 @click.argument("name")
 @click.option("--force", is_flag=True)

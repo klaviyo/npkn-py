@@ -25,5 +25,5 @@ exports.default = (req, res) => {
 
 CONFIG_FILE_NAME = "meta.yaml"
 
-RUNTIMES = ['python3.8', 'node14x']
+RUNTIMES = ['python3.8', 'nodejs14.x']
 

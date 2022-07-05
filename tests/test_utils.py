@@ -5,26 +5,24 @@ from npkn.constants import RUNTIMES
 import logging
 
 
-def test_log_error_and_exit_with_string(caplog):
-    caplog.set_level(logging.ERROR)
+def test_log_error_and_exit_with_string(capsys):
     test_err_message = "test error"
 
     with pytest.raises(SystemExit) as pytest_wrapped_e:
         utils.log_error_and_exit(test_err_message)
 
-    assert test_err_message in caplog.text
+    assert test_err_message in capsys.readouterr().out
     assert pytest_wrapped_e.type == SystemExit
     assert pytest_wrapped_e.value.code == 1
 
 
-def test_log_error_and_exit_with_base_exception(caplog):
-    caplog.set_level(logging.ERROR)
+def test_log_error_and_exit_with_base_exception(capsys):
     test_err_message = "test error"
 
     with pytest.raises(SystemExit) as pytest_wrapped_e:
         utils.log_error_and_exit(BaseException(test_err_message))
 
-    assert test_err_message in caplog.text
+    assert test_err_message in capsys.readouterr().out
     assert pytest_wrapped_e.type == SystemExit
     assert pytest_wrapped_e.value.code == 1
 

@@ -1,3 +1,4 @@
+import logging
 import os
 import shutil
 from npkn.utils import config, logger, log_error_and_exit, run_with_loading_message
@@ -86,6 +87,5 @@ def pull(name, force):
         run_with_loading_message(pull_and_init_local_function, f"Pulling function '{name}'", args=[function, workspace])
         list_files(os.path.join(os.getcwd(), name))
     except BaseException as e:
-        print(e)
-        shutil.rmtree(dest)
+        shutil.rmtree(dest, ignore_errors=True)
         log_error_and_exit(e)

@@ -23,7 +23,7 @@ def do_new_api_call(runtime, workspace_id, name, folder_path):
 
 def new(name, runtime, workspace):
     if not runtime:
-        raise ValueError(
+        log_error_and_exit(
             """
             No runtime is set. Either NPKN_DEFAULT_RUNTIME env var must be set 
             or '-r [runtime]' must be passed in CLI. Runtime options are: python3.8 | nodejs14.x
